@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="cancel.css">
+    <script src="cancel.js"></script>
+</head>
+<body>
+    <a href="Reservation.html">About</a>
+    <main>
+        <div class="container">
+            <h2>Cancellation Form</h2>
+            <form id="cancellationForm" method="post" name="google-sheet">
+                <input type="text" id="pnrNumber" placeholder="PNR Number" name="Number">
+                <button type="submit" onclick="cancelReservation()" name="submit">submit
+                </button>
+            </form>
+        </div>
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwmfrP1UvyWgttMV1sQtBR3mXn0fNac6Zx3K99_UDLVr4qBau15s3j-i9aRlBXDry5Sew/exec'
+            const form = document.forms['google-sheet']
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => alert("YOUR CANCELLATION IS CONFIRM."))
+                .catch(error => console.error('Error!', error.message))
+            })
+          </script>
+
+</main>
+
+</body>
+</html>
